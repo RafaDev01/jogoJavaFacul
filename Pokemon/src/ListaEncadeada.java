@@ -1,25 +1,25 @@
-public class ListaEncadeada<Pokemon>{
-  private No<Pokemon> primeiro;
-  private No<Pokemon> ultimo;
+public class ListaEncadeada{
+  private No primeiro;
+  private No ultimo;
   private int tamanho;
   
   public ListaEncadeada(){
     this.tamanho = 0;
   }
 
-  public No<Pokemon> getPrimeiro() {
+  public No getPrimeiro() {
     return primeiro;
   }
   
-  public void setPrimeiro(No<Pokemon> primeiro) {
+  public void setPrimeiro(No primeiro) {
     this.primeiro = primeiro;
   }
   
-  public No<Pokemon> getUltimo() {
+  public No getUltimo() {
     return ultimo;
   }
   
-  public void setUltimo(No<Pokemon> ultimo) {
+  public void setUltimo(No ultimo) {
     this.ultimo = ultimo;
   }
   
@@ -31,8 +31,8 @@ public class ListaEncadeada<Pokemon>{
     this.tamanho = tamanho;
   }
 
-  public void adicionar(Pokemon novoValor){
-    No<Pokemon> novoNo = new No<Pokemon>(novoValor);
+  public void adicionar(PokemonAbs novoValor){
+    No novoNo = new No(novoValor);
     if(this.primeiro == null && this.ultimo == null){
       this.primeiro = novoNo;
       this.ultimo = novoNo;
@@ -59,8 +59,8 @@ public class ListaEncadeada<Pokemon>{
     }
   }
   
-  public No<Pokemon> get(int posicao){
-    No<Pokemon> atual = this.primeiro;
+  public No get(int posicao){
+    No atual = this.primeiro;
     for(int i=0; i < posicao; i++){
       //if(atual.getValor() != null) tentei usar mas não consegui
       if(atual.getPróximo() != null){

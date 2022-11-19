@@ -1,24 +1,24 @@
-public class No<Pokemon> {
-  private Pokemon valor;
-  private No<Pokemon> próximo;
+public class No {
+  private PokemonAbs valor;
+  private No próximo;
 
-  public No(Pokemon valor){
+  public No(PokemonAbs valor){
     this.valor = valor;
   }
 
-  public Pokemon getValor() {
+  public PokemonAbs getValor() {
     return valor;
   }
 
-  public void setValor(Pokemon valor) {
+  public void setValor(PokemonAbs valor) {
     this.valor = valor;
   }
 
-  public No<Pokemon> getPróximo() {
+  public No getPróximo() {
     return próximo;
   }
   
-  public void setPróximo(No<Pokemon> próximo) {
+  public void setPróximo(No próximo) {
     this.próximo = próximo;
   }
 }

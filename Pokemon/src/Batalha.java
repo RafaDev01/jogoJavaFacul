@@ -1,6 +1,6 @@
 import java.util.Random;
-
-public class Batalha<Tipo> {
+import java.util.random.*;
+public class Batalha {
   private String jogador1;
   private String jogador2;
 
@@ -26,12 +26,12 @@ public class Batalha<Tipo> {
     this.jogador2 = jogador2;
   }
 
-  public void apresentar(Pokemon poke1,Pokemon poke2){
-    System.out.println(poke1.getNome() + " vida: " + poke1.getVida());
-    System.out.println(poke2.getNome() + " vida: " + poke2.getVida() + "\n");
+  public void apresentar(PokemonAbs poke1,PokemonAbs poke2){
+    System.out.println(poke1.getNome() + " Tipo: [" + poke1.getNomeTipo() + "] --- vida: " + poke1.getVida());
+    System.out.println(poke2.getNome() + " Tipo: [" + poke2.getNomeTipo() + "] --- vida: " + poke2.getVida() + "\n");
   }
 
-  public void defineVencedor(Pokemon poke1,Pokemon poke2){
+  public void defineVencedor(PokemonAbs poke1,PokemonAbs poke2){
 
     if(poke1.getVida() > poke2.getVida() && poke1.getVida() > 0){
       poke1.ganhar();
@@ -41,21 +41,50 @@ public class Batalha<Tipo> {
     }
   }
 
-  public void batalhar(Pokemon poke1,Pokemon poke2){
-      apresentar(poke1, poke2);
+  public void fraqueza(PokemonAbs pokemon1, PokemonAbs pokemon2){
+    if((pokemon1.getTipo() == 1) && (pokemon2.getTipo() == 2)){
+      pokemon1.setAtaque(pokemon1.getAtaque() * 1.3);
+    }else if((pokemon2.getTipo() == 1) && (pokemon1.getTipo() == 2)){
+      pokemon2.setAtaque(pokemon2.getAtaque() * 1.3);
+    }
+  }
+  
+  public void batalhar(PokemonAbs poke1,PokemonAbs poke2){
+    apresentar(poke1, poke2);
+    fraqueza(poke1, poke2);
+    
+    RandomGenerator r1 = new Random();
+    int e = 0;
 
-      while(poke1.getVida() > 0 || poke2.getVida() > 0){
+    while(poke1.getVida() > 0 || poke2.getVida() > 0){
+        e = r1.nextInt(50);
         poke1.atacar(poke2);
-        poke2.sofrerDano(poke1);
+        if(e == 1 || e == 10 || e == 20 || e == 30 || e == 40 || e == 49){
+          poke2.esquivar();
+        }else if(e == 3 || e == 6 || e == 9 || e == 22 || e == 29 || e == 31 || e == 44){  
+          poke1.ataqueCritico();
+          poke2.sofrerDano(poke1,true);
+        }else{
+          poke2.sofrerDano(poke1);
+        }
         if(poke2.getVida() <= 0){
           break;
         }
+
+        e = r1.nextInt(50);
         poke2.atacar(poke1);
-        poke1.sofrerDano(poke2);
-        if(poke1.getVida() <= 0){
-          break;
-        }
-      } 
-      defineVencedor(poke1, poke2);
+        if(e == 1 || e == 10 || e == 20 || e == 30 || e == 40 || e == 49){
+          poke1.esquivar();
+        }else if(e == 3 || e == 6 || e == 9 || e == 22 || e == 29 || e == 31 || e == 44){  
+          poke2.ataqueCritico();
+          poke1.sofrerDano(poke2,true);
+        }else{
+          poke1.sofrerDano(poke2);
+            if(poke1.getVida() <= 0){
+              break;
+            }
+          }  
+        } 
+    defineVencedor(poke1, poke2);
   }
 }
