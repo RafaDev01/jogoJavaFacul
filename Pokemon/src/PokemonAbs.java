@@ -85,10 +85,10 @@ public abstract class PokemonAbs implements Interface{
     return dano;
   }
 
-  public void sofrerDano(PokemonAbs atacante,boolean critico){
+  public void sofrerDano(Player ataque,PokemonAbs atacante,boolean critico){
     System.out.println(atacante.getNome() + " Aplicou um ataque critico");
     double vida = this.getVida();
-    double dano = atacante.getAtaque() + ataqueCritico() - this.getDefesa();
+    double dano = atacante.getAtaque() + ataqueCritico() + ataque.getXp() - this.getDefesa();
     vida -= dano;
     System.out.println(this.getNome() + " Sofreu um dano de: "+dano);
     this.setVida(vida);
@@ -124,9 +124,9 @@ public abstract class PokemonAbs implements Interface{
   }
 
   @Override
-  public void sofrerDano(PokemonAbs atacante) {
+  public void sofrerDano(Player ataque, PokemonAbs atacante) {
     double vida = this.getVida();
-    double dano = atacante.getAtaque() - this.getDefesa();
+    double dano = atacante.getAtaque()+ ataque.getXp() - this.getDefesa();
     vida -= dano;
     System.out.println(this.getNome() + " Sofreu um dano de: "+dano);
     this.setVida(vida);

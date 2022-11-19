@@ -1,28 +1,28 @@
 import java.util.Random;
 import java.util.random.*;
 public class Batalha {
-  private String jogador1;
-  private String jogador2;
+  private Player jogador1;
+  private Player jogador2;
 
   
-  public Batalha(String jog1, String jog2){
+  public Batalha(Player jog1, Player jog2){
     this.jogador1 = jog1;
     this.jogador2 = jog2;
   }
 
-  public String getJogador1() {
+  public Player getJogador1() {
     return jogador1;
   }
 
-  public void setJogador1(String jogador1) {
+  public void setJogador1(Player jogador1) {
     this.jogador1 = jogador1;
   }
 
-  public String getJogador2() {
+  public Player getJogador2() {
     return jogador2;
   }
 
-  public void setJogador2(String jogador2) {
+  public void setJogador2(Player jogador2) {
     this.jogador2 = jogador2;
   }
 
@@ -63,11 +63,13 @@ public class Batalha {
           poke2.esquivar();
         }else if(e == 3 || e == 6 || e == 9 || e == 22 || e == 29 || e == 31 || e == 44){  
           poke1.ataqueCritico();
-          poke2.sofrerDano(poke1,true);
+          poke2.sofrerDano(jogador1,poke1,true);
         }else{
-          poke2.sofrerDano(poke1);
+          poke2.sofrerDano(jogador1,poke1);
         }
         if(poke2.getVida() <= 0){
+          jogador1.ganharPonto();
+          jogador2.perderPonto();
           break;
         }
 
@@ -77,10 +79,12 @@ public class Batalha {
           poke1.esquivar();
         }else if(e == 3 || e == 6 || e == 9 || e == 22 || e == 29 || e == 31 || e == 44){  
           poke2.ataqueCritico();
-          poke1.sofrerDano(poke2,true);
+          poke1.sofrerDano(jogador2,poke2,true);
         }else{
-          poke1.sofrerDano(poke2);
+          poke1.sofrerDano(jogador2,poke2);
             if(poke1.getVida() <= 0){
+              jogador2.ganharPonto();
+              jogador1.perderPonto();
               break;
             }
           }  
