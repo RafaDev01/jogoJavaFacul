@@ -18,7 +18,7 @@ public class Player {
       System.out.println("Número de XP inválido, será atribuido o valor 10.");
       this.nivelXp = 10;
     } finally{
-      System.out.println("--\n--");
+      System.out.println("----\n");
     }
 
     this.vitoria = 0;

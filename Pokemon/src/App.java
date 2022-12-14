@@ -6,7 +6,7 @@ public class App {
         Player jogador2 = new Player();
 
         int contP1 = 0;
-        ListaPlyer1.adicionar(new Pikachu(160, 53, 900, 1));
+        ListaPlyer1.adicionar(new Pikachu(220, 68, 1100, 1));
         ListaPlyer1.adicionar(new Gengar(160, 61, 850, 4));
         ListaPlyer1.adicionar(new Mewtwo(366, 101, 1500, 3));
         
@@ -21,12 +21,14 @@ public class App {
 
         for (int i = 0; i < ListaPlyer1.getTamanho(); i++) {
             PokemonAbs pokemon1 = ListaPlyer1.get(contP1).getValor();
+
             PokemonAbs pokemon2 = ListaPlyer2.get(contP2).getValor();
 
             batalha.batalhar(pokemon1, pokemon2);
             contP1++;
             contP2++;
         }
+
         System.out.println("-------------> Resultado <-------------\n");
         if(jogador1.getVitoria() > jogador2.getVitoria()){
             jogador1.ganharPartida();

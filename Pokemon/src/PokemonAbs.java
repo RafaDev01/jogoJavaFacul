@@ -1,16 +1,17 @@
 import java.util.Random;
 import java.util.random.*;
+import java.util.Scanner;
 
 public abstract class PokemonAbs implements Interface{
   private String nome;
-  private double ataque;
+  private double forca;
   private double defesa;
   private double vida;
   private int tipo;
   private String nomeTipo;
-
-  public PokemonAbs(double ataque,double defesa,double vida, int tipo){
-    this.ataque = ataque;
+  
+  public PokemonAbs(double forca,double defesa,double vida, int tipo){
+    this.forca = forca;
     this.defesa = defesa;
     this.vida = vida;
     this.tipo = tipo;
@@ -18,6 +19,17 @@ public abstract class PokemonAbs implements Interface{
     setNomeTipo(tipo);
   }
   
+  Scanner s1 = new Scanner(System.in);
+  Scanner s2 = new Scanner(System.in);
+  
+  public double getForca() {
+    return forca;
+  }
+
+  public void setForca(double forca) {
+    this.forca = forca;
+  }
+
   public void setNomeTipo(int tipo){
     if(this.getTipo() == 1){
       this.nomeTipo = "Eletrico";
@@ -54,14 +66,6 @@ public abstract class PokemonAbs implements Interface{
     this.nome = nome;
   }
   
-  public double getAtaque() {
-    return ataque;
-  }
-  
-  public void setAtaque(double ataque) {
-    this.ataque = ataque;
-  }
-  
   public double getDefesa() {
     return defesa;
   }
@@ -78,6 +82,14 @@ public abstract class PokemonAbs implements Interface{
     this.vida = vida;
   }
 
+  public void fraqueza(PokemonAbs pokemon1, PokemonAbs pokemon2){
+    if((pokemon1.getTipo() == 1) && (pokemon2.getTipo() == 2)){
+      pokemon1.setForca(forca);(pokemon1.getForca() * 1.3);
+    }else if((pokemon2.getTipo() == 1) && (pokemon1.getTipo() == 2)){
+      pokemon2.setForca(pokemon2.getForca() * 1.3);
+    }
+  }
+
   @Override
   public double ataqueCritico(){
     RandomGenerator r1 = new Random();
@@ -88,7 +100,7 @@ public abstract class PokemonAbs implements Interface{
   public void sofrerDano(Player ataque,PokemonAbs atacante,boolean critico){
     System.out.println(atacante.getNome() + " Aplicou um ataque critico");
     double vida = this.getVida();
-    double dano = atacante.getAtaque() + ataqueCritico() + ataque.getXp() - this.getDefesa();
+    double dano = atacante.getForca() + ataqueCritico() + ataque.getXp() - this.getDefesa();
     vida -= dano;
     System.out.println(this.getNome() + " Sofreu um dano de: "+dano);
     this.setVida(vida);
@@ -126,7 +138,7 @@ public abstract class PokemonAbs implements Interface{
   @Override
   public void sofrerDano(Player ataque, PokemonAbs atacante) {
     double vida = this.getVida();
-    double dano = atacante.getAtaque()+ ataque.getXp() - this.getDefesa();
+    double dano = atacante.getForca()+ ataque.getXp() - this.getDefesa();
     vida -= dano;
     System.out.println(this.getNome() + " Sofreu um dano de: "+dano);
     this.setVida(vida);

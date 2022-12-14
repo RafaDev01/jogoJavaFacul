@@ -3,8 +3,25 @@ import java.util.random.*;
 public class Batalha {
   private Player jogador1;
   private Player jogador2;
+  private PokemonAbs ataqPk1;
+  private PokemonAbs ataqPk2;
 
-  
+  public PokemonAbs getAtaqPk1() {
+    return ataqPk1;
+  }
+
+  public void setAtaqPk1(PokemonAbs ataqPk1) {
+    this.ataqPk1 = ataqPk1;
+  }
+
+  public PokemonAbs getAtaqPk2() {
+    return ataqPk2;
+  }
+
+  public void setAtaqPk2(PokemonAbs ataqPk2) {
+    this.ataqPk2 = ataqPk2;
+  }
+
   public Batalha(Player jog1, Player jog2){
     this.jogador1 = jog1;
     this.jogador2 = jog2;
@@ -40,24 +57,16 @@ public class Batalha {
       poke2.ganhar();
     }
   }
-
-  public void fraqueza(PokemonAbs pokemon1, PokemonAbs pokemon2){
-    if((pokemon1.getTipo() == 1) && (pokemon2.getTipo() == 2)){
-      pokemon1.setAtaque(pokemon1.getAtaque() * 1.3);
-    }else if((pokemon2.getTipo() == 1) && (pokemon1.getTipo() == 2)){
-      pokemon2.setAtaque(pokemon2.getAtaque() * 1.3);
-    }
-  }
   
   public void batalhar(PokemonAbs poke1,PokemonAbs poke2){
     apresentar(poke1, poke2);
-    fraqueza(poke1, poke2);
-    
+
     RandomGenerator r1 = new Random();
     int e = 0;
 
     while(poke1.getVida() > 0 || poke2.getVida() > 0){
         e = r1.nextInt(50);
+        poke1.ataques();
         poke1.atacar(poke2);
         if(e == 1 || e == 10 || e == 20 || e == 30 || e == 40 || e == 49){
           poke2.esquivar();
@@ -74,6 +83,7 @@ public class Batalha {
         }
 
         e = r1.nextInt(50);
+        poke2.ataques();
         poke2.atacar(poke1);
         if(e == 1 || e == 10 || e == 20 || e == 30 || e == 40 || e == 49){
           poke1.esquivar();
