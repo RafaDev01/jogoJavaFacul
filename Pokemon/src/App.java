@@ -6,19 +6,18 @@ public class App {
         Player jogador2 = new Player();
 
         int contP1 = 0;
-        ListaPlyer1.adicionar(new Pikachu(220, 68, 1100, 1));
-        ListaPlyer1.adicionar(new Gengar(160, 61, 850, 4));
-        ListaPlyer1.adicionar(new Mewtwo(366, 101, 1500, 3));
+        ListaPlyer1.adicionar(new Pikachu(22, 42, 500, 1));
+        ListaPlyer1.adicionar(new Gengar(26, 52, 600, 4));
+        ListaPlyer1.adicionar(new Mewtwo(32, 64, 700, 3));
         
         int contP2 = 0;
         ListaEncadeada ListaPlyer2 = new ListaEncadeada();
-        ListaPlyer2.adicionar(new Blastoise(262, 98, 1200, 2));
-        ListaPlyer2.adicionar(new Charmander(269, 93, 1100, 5));
-        ListaPlyer2.adicionar(new Rayquaza(301, 180, 1200, 6));
+        ListaPlyer2.adicionar(new Blastoise(36, 53, 600, 2));
+        ListaPlyer2.adicionar(new Charmander(25, 41, 500, 5));
+        ListaPlyer2.adicionar(new Rayquaza(31, 84, 490, 6));
 
         Batalha batalha = new Batalha(jogador1, jogador2);
         
-
         for (int i = 0; i < ListaPlyer1.getTamanho(); i++) {
             PokemonAbs pokemon1 = ListaPlyer1.get(contP1).getValor();
 

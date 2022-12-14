@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Rayquaza extends PokemonAbs{
 
   public Rayquaza(double forca, double defesa, double vida, int tipo) {
@@ -7,22 +9,38 @@ public class Rayquaza extends PokemonAbs{
   
   @Override
   public void ataques() {
-    System.out.println("Digite:");
-    System.out.println("(1) - Hiper Raio");
-    System.out.println("(2) - Raio de Gelo");
-    System.out.println("(3) - Arremesso Sísmico");
-    System.out.println("(4) - Poder ancestral");
-    System.out.println("(5) - Cauda do dragao");
-    ataqueDoPokemon(s1.nextInt());
-  }
+      Scanner s1 = new Scanner(System.in);
+      System.out.println("Digite:");
+      System.out.println("(1) - Hiper Raio");
+      System.out.println("(2) - Raio de Gelo");
+      System.out.println("(3) - Arremesso Sísmico");
+      System.out.println("(4) - Poder ancestral");
+      System.out.println("(5) - Cauda do dragao");
+
+      try{
+        ataqueDoPokemon(s1.nextInt());
+      }catch(Exception e){
+      ataqueDoPokemon(0);
+      }
+    }
 
   @Override
-  public double ataqueDoPokemon(int ataque) {
+  public void ataqueDoPokemon(int ataque) {
+    double atk = 0;
     if(ataque == 1){
-      ataque = 150;
+      atk = 100;
     }else if(ataque == 2){
-      ataque = 100;
+      atk = 120;
+    }else if(ataque == 3){
+      atk = 89;
+    }else if(ataque == 4){
+      atk = 150;
+    }else if(ataque == 5){
+      atk = 89;
+    }else{
+      System.out.println("\nVoce errou o ataque!");
+      atk = -100000;
     }
-      return ataque;
-    }
+    setAtaque(atk);
+  }
 }

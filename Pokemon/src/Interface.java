@@ -8,5 +8,5 @@ public interface Interface {
   public void ganhar();
   public void perder();
   public void empatar();
-  public double ataqueDoPokemon(int ataque);
+  public void ataqueDoPokemon(int ataque);
 }

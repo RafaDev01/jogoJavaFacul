@@ -1,5 +1,6 @@
 import java.util.Random;
 import java.util.random.*;
+
 public class Batalha {
   private Player jogador1;
   private Player jogador2;
